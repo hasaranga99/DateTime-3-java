@@ -1,3 +1,8 @@
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,11 +14,17 @@
  * @author HP
  */
 public class DateTime3 extends javax.swing.JFrame implements Runnable {
+    
+    int hour, minute, secend;
+    int day, month, year;
+    String displayTime, displayDate;
 
     /**
      * Creates new form DateTime3
      */
     public DateTime3() {
+        Thread t = new Thread(this);
+        t.start();
         initComponents();
     }
 
@@ -122,6 +133,36 @@ public class DateTime3 extends javax.swing.JFrame implements Runnable {
 
     @Override
     public void run() {
+        
+        while(true){
+            
+            try {
+                Calendar c = Calendar.getInstance();
+                
+                hour = c.get(Calendar.HOUR_OF_DAY);
+                if(hour>12);
+                hour = hour - 12;
+                minute = c.get(Calendar.MINUTE);
+                secend = c.get(Calendar.SECOND);
+                day = c.get(Calendar.DAY_OF_MONTH);
+                month = c.get(Calendar.MONTH);
+                year = c.get(Calendar.YEAR);
+                
+                SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss");
+                Date d = c.getTime();
+                displayTime = time.format(d);
+                displayDate = date.format(d);
+                jLabel4.setText(displayTime);
+                jLabel2.setText(displayDate);
+                
+                
+                
+            } catch (Exception e) {
+                
+            }
+            
+        }
        
     }
 }

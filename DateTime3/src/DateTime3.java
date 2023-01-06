@@ -159,7 +159,7 @@ public class DateTime3 extends javax.swing.JFrame implements Runnable {
                 
                 
             } catch (Exception e) {
-                
+                e.printStackTrace(); 
             }
             
         }
